@@ -7,6 +7,7 @@ let monthlyAmount = 0;
 //click function
 function readyNow(){
     $( '#submitButton' ).on( 'click', submitEEInfo );
+    $( '#deleteButton' ).on( 'click', deleteEEInfo );
 }
 
 //submit employee info function
@@ -25,6 +26,21 @@ function submitEEInfo(){
     employeeInfo.push( employeeObject );
     //starts our display function
     displayEEInfo( employeeInfo );
+}
+
+function deleteEEInfo(){
+    //inputs employee ID
+    let removeID = $( '#deleteID' ).val();
+    let eeOut = $( '#eeOutput' );
+    //loop through employeeInfo and match ID
+    for( let i =0; i<employeeInfo.length; i++){
+        if( employeeInfo[i].idNumber === removeID ){
+            //removes employee object from employeeInfo array
+            employeeInfo.pop( employeeInfo[i] );
+            //remove from display
+            $(`li:contains('${ removeID }')`).remove();
+        }
+    }
 }
 
 //display function
@@ -55,7 +71,12 @@ function readyToCalculate(){
     let total = $( '#addUpTotal' );
     total.empty();
     total.append( monthlyAmount );
+    if( total >= 20000 ){
+        
+    }
 }
+
+
 
 //The application should have an input form that collects employee first name, last name, ID number, job title, annual salary.
 
