@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery-3.4.0.js" charset="utf-8"></script>
+    <script type="text/javascript" src="client.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Salary Calculator</title>
+</head>
+<body>
+    <header> 
+        <h1>Salary Calculator</h1>
+    </header>
+        <h2 class="addEE">Insert Employee Information</h2>
+    <div>
+        <input id="eeFNameInput" type="text" placeholder="First Name">
+        <input id="eeLNameInput" type="text" placeholder="Last Name">
+        <input id="eeID" type="number" placeholder="Employee ID">
+        <input id="eeJobTitle" type="text" placeholder="Job Title">
+        <input id="eeAnnualSalary" type="number" placeholder="Annual Salary">
+        <input id="submitButton" type="submit" value="Submit">
+    </div>
+        <h2 class="seeEE">Record of Employees</h2>
+    <div class="container">
+        <table id="outputTable">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Annual Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul id="eeOutput"></ul>
+                        </ul>
+                        <button id="deleteButton">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="totalSalaries">
+        <p>Total Amount</p>
+        <ul id="addUpTotal"></ul>
+    </div>
+</body>
+</html>
+
+<!--employee first name, last name, ID number, job title, annual salary.-->
