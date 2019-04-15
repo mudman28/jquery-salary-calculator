@@ -7,6 +7,8 @@
     <script src="jquery-3.4.0.js" charset="utf-8"></script>
     <script type="text/javascript" src="client.js"></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <title>Salary Calculator</title>
 </head>
 <body>
@@ -20,27 +22,34 @@
         <input id="eeID" type="number" placeholder="Employee ID">
         <input id="eeJobTitle" type="text" placeholder="Job Title">
         <input id="eeAnnualSalary" type="number" placeholder="Annual Salary">
-        <input id="submitButton" type="submit" value="Submit">
+        <input id="submitButton" type="submit" value="Submit">  
     </div>
+        <p id="correctInput"></p>
         <h2 class="seeEE">Record of Employees</h2>
-    <div class="container">
-       
-                    <!--<th>First Name</th>
-                    <th>Last Name</th>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Annual Salary</th>-->
-            
-           
-            <ul id="eeOutput"></ul>
-            </ul>     
+    <div id ="div1" class="container">
+        <table class="table table-stripe">
+                <thead style="display: table-header-group;">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Annual Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><ul id="eeOutput"></ul></td>
+                    </tr>
+                </tbody>
+            </table>    
     </div>
     <div>
         <input id="deleteID" type='number' placeholder="Employee ID">
         <input id="deleteButton" type="button" value="delete">
     </div>
     <div id="totalSalaries">
-        <p>Total Amount</p>
+        <p>Total Monthly Expenses</p>
         <ul id="addUpTotal" ></ul>
     </div>
 </body>

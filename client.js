@@ -1,13 +1,36 @@
 $( document ).ready( readyNow );
 
+
 let employeeInfo = []
 let totalAmount = 0;
 let monthlyAmount = 0;
 
-//click function
+//click button function
 function readyNow(){
-    $( '#submitButton' ).on( 'click', submitEEInfo );
+    $( '#submitButton' ).on( 'click', rightInput );
     $( '#deleteButton' ).on( 'click', deleteEEInfo );
+}
+
+//this function prevents blank fields
+function rightInput(){
+    let input = $( '#correctInput' );
+    input.empty();
+    if ( $( '#eeFNameInput' ).val() === null || $( '#eeFNameInput' ).val() === '' ) {
+        input.append('Please Complete All Fields Before Submitting')
+    }
+    else if ( $( '#eeLNameInput' ).val() === null || $( '#eeLNameInput' ).val() === '') {
+        input.append('Please Complete All Fields Before Submitting')
+    }
+    else if ( $( '#eeID' ).val() === null || $( '#eeID' ).val() === '') {
+        input.append('Please Complete All Fields Before Submitting')
+    }
+    else if ( $( '#eeJobTitle' ).val() === null || $( '#eeJobTitle' ).val() === '') {
+        input.append('Please Complete All Fields Before Submitting')
+    }
+    else if ( $( '#eeAnnualSalary' ).val() === null || $( '#eeAnnualSalary' ).val() === '') {
+        input.append('Please Complete All Fields Before Submitting')
+    }
+    submitEEInfo();
 }
 
 //submit employee info function
@@ -24,23 +47,14 @@ function submitEEInfo(){
     readyToCalculate();
     //puts our created object in the array
     employeeInfo.push( employeeObject );
+    //clears inputs
+    $( '#eeFNameInput' ).val('');
+    $( '#eeLNameInput' ).val('');
+    $( '#eeID' ).val('');
+    $( '#eeJobTitle' ).val('');
+    $( '#eeAnnualSalary' ).val('');
     //starts our display function
     displayEEInfo( employeeInfo );
-}
-
-function deleteEEInfo(){
-    //inputs employee ID
-    let removeID = $( '#deleteID' ).val();
-    let eeOut = $( '#eeOutput' );
-    //loop through employeeInfo and match ID
-    for( let i =0; i<employeeInfo.length; i++){
-        if( employeeInfo[i].idNumber === removeID ){
-            //removes employee object from employeeInfo array
-            employeeInfo.pop( employeeInfo[i] );
-            //remove from display
-            $(`li:contains('${ removeID }')`).remove();
-        }
-    }
 }
 
 //display function
@@ -50,7 +64,8 @@ function displayEEInfo(){
     eeOut.empty();
     //gets employee info from the array and prints in in the location above
     for( let i = 0; i < employeeInfo.length; i++){
-        const employeeOut = `<li>${ employeeInfo[i].firstName }
+        const employeeOut = 
+        `<li>${ employeeInfo[i].firstName }
             ${ employeeInfo[i].lastName }
             # ${ employeeInfo[i].idNumber }
             ${ employeeInfo[i].jobTitle }
@@ -70,13 +85,42 @@ function readyToCalculate(){
     //outputs the monthly amount
     let total = $( '#addUpTotal' );
     total.empty();
-    total.append( monthlyAmount );
-    if( total >= 20000 ){
-        
+    total.append( '$' + monthlyAmount );
+    redAlert();
+}
+
+function deleteEEInfo(){
+    //inputs employee ID
+    let wage = 0
+    let newWage = 0
+    let removeID = $( '#deleteID' ).val();
+    //loop through employeeInfo and match ID
+    for( let i =0; i<employeeInfo.length; i++){
+        if( employeeInfo[i].idNumber === removeID ){
+            //remove from display
+            $(`li:contains('${ removeID }')`).remove();
+            //delete the salary from monthly amount
+            wage = employeeInfo[i].annualSalary;
+            totalAmount -= wage;
+            newWage = wage/12;
+            monthlyAmount -= newWage;
+            let total = $( '#addUpTotal' );
+            total.empty();
+            total.append( monthlyAmount );
+            //removes employee object from employeeInfo array
+            employeeInfo.pop( employeeInfo[i] );
+                //clears delete input
+        $( '#deleteID' ).val('')
+        redAlert();
+        }
     }
 }
 
-
+function redAlert(){
+    if(monthlyAmount > 20000){  
+        $('#addUpTotal').css('background-color', 'red')
+    }
+}
 
 //The application should have an input form that collects employee first name, last name, ID number, job title, annual salary.
 
