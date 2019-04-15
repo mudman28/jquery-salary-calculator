@@ -30,7 +30,9 @@ function rightInput(){
     else if ( $( '#eeAnnualSalary' ).val() === null || $( '#eeAnnualSalary' ).val() === '') {
         input.append('Please Complete All Fields Before Submitting')
     }
-    submitEEInfo();
+    else{
+        submitEEInfo();
+    }
 }
 
 //submit employee info function
