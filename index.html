@@ -17,32 +17,28 @@
     </header>
         <h2 class="addEE">Insert Employee Information</h2>
     <div>
-        <input id="eeFNameInput" type="text" placeholder="First Name">
-        <input id="eeLNameInput" type="text" placeholder="Last Name">
         <input id="eeID" type="number" placeholder="Employee ID">
+        <input id="eeLNameInput" type="text" placeholder="Last Name">
+        <input id="eeFNameInput" type="text" placeholder="First Name">
         <input id="eeJobTitle" type="text" placeholder="Job Title">
         <input id="eeAnnualSalary" type="number" placeholder="Annual Salary">
         <input id="submitButton" type="submit" value="Submit">  
     </div>
         <p id="correctInput"></p>
         <h2 class="seeEE">Record of Employees</h2>
-    <div id ="div1" class="container">
+    <div id = class="container">
         <table class="table table-stripe">
                 <thead style="display: table-header-group;">
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
                         <th>ID</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
                         <th>Title</th>
                         <th>Annual Salary</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><ul id="eeOutput"></ul></td>
-                    </tr>
-                </tbody>
-            </table>    
+                <tbody id="eeOutput"></tbody>
+        </table>    
     </div>
     <div>
         <input id="deleteID" type='number' placeholder="Employee ID">

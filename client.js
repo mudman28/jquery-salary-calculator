@@ -15,13 +15,13 @@ function readyNow(){
 function rightInput(){
     let input = $( '#correctInput' );
     input.empty();
-    if ( $( '#eeFNameInput' ).val() === null || $( '#eeFNameInput' ).val() === '' ) {
+    if ( $( '#eeID' ).val() === null || $( '#eeID' ).val() === '') {
         input.append('Please Complete All Fields Before Submitting')
     }
     else if ( $( '#eeLNameInput' ).val() === null || $( '#eeLNameInput' ).val() === '') {
         input.append('Please Complete All Fields Before Submitting')
     }
-    else if ( $( '#eeID' ).val() === null || $( '#eeID' ).val() === '') {
+    else if ( $( '#eeFNameInput' ).val() === null || $( '#eeFNameInput' ).val() === '' ) {
         input.append('Please Complete All Fields Before Submitting')
     }
     else if ( $( '#eeJobTitle' ).val() === null || $( '#eeJobTitle' ).val() === '') {
@@ -37,9 +37,9 @@ function rightInput(){
 function submitEEInfo(){
     //create employee object framework
     const employeeObject = {
-        firstName: $( '#eeFNameInput' ).val(),
-        lastName: $( '#eeLNameInput' ).val(),
         idNumber: $( '#eeID' ).val(),
+        lastName: $( '#eeLNameInput' ).val(),
+        firstName: $( '#eeFNameInput' ).val(),
         jobTitle: $( '#eeJobTitle' ).val(),
         annualSalary: $( '#eeAnnualSalary' ).val()
     }
@@ -48,9 +48,9 @@ function submitEEInfo(){
     //puts our created object in the array
     employeeInfo.push( employeeObject );
     //clears inputs
-    $( '#eeFNameInput' ).val('');
-    $( '#eeLNameInput' ).val('');
     $( '#eeID' ).val('');
+    $( '#eeLNameInput' ).val('');
+    $( '#eeFNameInput' ).val('');
     $( '#eeJobTitle' ).val('');
     $( '#eeAnnualSalary' ).val('');
     //starts our display function
@@ -64,19 +64,18 @@ function displayEEInfo(){
     eeOut.empty();
     //gets employee info from the array and prints in in the location above
     for( let i = 0; i < employeeInfo.length; i++){
-        const employeeOut = 
-        `<li>${ employeeInfo[i].firstName }
-            ${ employeeInfo[i].lastName }
-            # ${ employeeInfo[i].idNumber }
-            ${ employeeInfo[i].jobTitle }
-            $ ${ employeeInfo[i].annualSalary }</li>`;
-        eeOut.append( employeeOut );
+        eeOut.append(
+        `<tr><td>#${ employeeInfo[i].idNumber }</td>
+        <td>${ employeeInfo[i].lastName }</td>
+        <td>${ employeeInfo[i].firstName }</td>
+        <td>${ employeeInfo[i].jobTitle }</td>
+        <td>$${ employeeInfo[i].annualSalary }</td></tr>` );
     }    
 }
 
 //calculates the monthly amount of wages
 function readyToCalculate(){
-    //grabs the inputted wages
+    //grabs the wage amounts
     let newWage = $( '#eeAnnualSalary' ).val();
     let wage = Number( newWage );
     //adds the wages up and divides it into monthly amounts
@@ -98,7 +97,7 @@ function deleteEEInfo(){
     for( let i =0; i<employeeInfo.length; i++){
         if( employeeInfo[i].idNumber === removeID ){
             //remove from display
-            $(`li:contains('${ removeID }')`).remove();
+            $(`tr:contains('${ removeID }')`).remove();
             //delete the salary from monthly amount
             wage = employeeInfo[i].annualSalary;
             totalAmount -= wage;
@@ -122,9 +121,3 @@ function redAlert(){
     }
 }
 
-//The application should have an input form that collects employee first name, last name, ID number, job title, annual salary.
-
-//A 'Submit' button should collect the form information, store the information to calculate monthly costs, append information to the DOM and clear the input fields. 
-//Using the stored information, calculate monthly costs and append this to the to DOM. If the total monthly cost exceeds $20,000, add a red background color to the total monthly cost.
-
-//Create a delete button that removes an employee from the DOM. For Base mode, it does not need to remove that Employee's salary from the reported total.
