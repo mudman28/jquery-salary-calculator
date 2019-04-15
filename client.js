@@ -15,7 +15,7 @@ function readyNow(){
 function rightInput(){
     let input = $( '#correctInput' );
     input.empty();
-    if ( $( '#eeID' ).val() === null || $( '#eeID' ).val() === '') {
+    if ( $( '#eeId' ).val() === null || $( '#eeId' ).val() === '') {
         input.append('Please Complete All Fields Before Submitting')
     }
     else if ( $( '#eeLNameInput' ).val() === null || $( '#eeLNameInput' ).val() === '') {
@@ -39,9 +39,9 @@ function rightInput(){
 function submitEEInfo(){
     //create employee object framework
     const employeeObject = {
-        idNumber: $( '#eeID' ).val(),
-        lastName: $( '#eeLNameInput' ).val(),
-        firstName: $( '#eeFNameInput' ).val(),
+        idNumber: $( '#eeId' ).val(),
+        lastName: $( '#eeLtNameInput' ).val(),
+        firstName: $( '#eeFtNameInput' ).val(),
         jobTitle: $( '#eeJobTitle' ).val(),
         annualSalary: $( '#eeAnnualSalary' ).val()
     }
@@ -50,9 +50,9 @@ function submitEEInfo(){
     //puts our created object in the array
     employeeInfo.push( employeeObject );
     //clears inputs
-    $( '#eeID' ).val('');
-    $( '#eeLNameInput' ).val('');
-    $( '#eeFNameInput' ).val('');
+    $( '#eeId' ).val('');
+    $( '#eeLtNameInput' ).val('');
+    $( '#eeFtNameInput' ).val('');
     $( '#eeJobTitle' ).val('');
     $( '#eeAnnualSalary' ).val('');
     //starts our display function
@@ -94,7 +94,7 @@ function deleteEEInfo(){
     //inputs employee ID
     let wage = 0
     let newWage = 0
-    let removeID = $( '#deleteID' ).val();
+    let removeID = $( '#deleteId' ).val();
     //loop through employeeInfo and match ID
     for( let i =0; i<employeeInfo.length; i++){
         if( employeeInfo[i].idNumber === removeID ){
